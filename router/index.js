@@ -13,9 +13,15 @@ router.all('*', async (ctx, next) => {
         ctx.status = 200
     }
     console.log(ctx.req.method, ctx.req.url)
+    console.log(ctx.request.body)
     await next()
 
 });
+
+router.get('/', async (ctx, next) => {
+    console.log(ctx.request)
+    ctx.body = 'hello world'
+})
 
 router.get('/annotation/allusers', async (ctx, next) => {
     await annotation.getAllUsers().then(res => {
@@ -58,6 +64,73 @@ router.post('/annotation/assign_image', async (ctx, next) => {
             code: 1000
         }
     })
+});
+
+async function relay(delay) {
+    return await timeout(delay);
+}
+
+async function timeout(delay) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve("random");
+        }, delay);
+    });
+};
+
+
+router.post('/', async (ctx, next) => {
+    console.log(ctx.request)
+    // await relay(7 * 1000)
+    ctx.body = { 'res': 'ok', 'key': 'test_key' }
+
+})
+
+router.post('/upload', async (ctx, next) => {
+    // console.log(ctx.request)
+    // console.log(ctx.request.ip)
+    let data = ctx.request.body
+    console.log(data)
+    console.log(data['key'])
+    if (data['key'].endsWith('1.jpg'))
+        ctx.body = { 'res': 'ok', 'key': 'test_key' }
+    else
+        ctx.body = { 'res': 'test_key' }
+})
+
+router.post('/device/init', async (ctx, next) => {
+    console.log('in init')
+    let data = ctx.request.body
+    console.log(data)
+    ctx.body = { 'code': 0 }
+})
+
+
+router.post('/device/open_lock', async (ctx, next) => {
+    ctx.body = { 'code': 0 }
+});
+router.post('/device/open_door', async (ctx, next) => {
+    ctx.body = { 'code': 0 }
+});
+
+router.post('/device/close', async (ctx, next) => {
+    ctx.body = { 'code': 0 }
+});
+
+router.post('/device/report', async (ctx, next) => {
+    ctx.body = { 'code': 0 }
+});
+
+router.post('/device/restart_readiness', async (ctx, next) => {
+    // await relay(4 * 1000)
+    ctx.body = { 'code': 0 }
+});
+
+router.post('/image/detect', async (ctx, next) => {
+    let data = ctx.request.body
+    let pics = data['pics']
+    console.log('pics: ', pics)
+    ctx.body = { 'code': 0 }
 });
 
 module.exports = router

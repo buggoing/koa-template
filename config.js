@@ -1,10 +1,10 @@
 module.exports = {
     dbConfig: {
-        host: '192.168.1.12',
+        host: 'localhost',
         port: '3306',
-        user: '***',
-        password: '***',
-        database: '**'
+        user: 'root',
+        password: '*',
+        database: '*'
     },
     dbConfigProd: {
         host: 'localhost',

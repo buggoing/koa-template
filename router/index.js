@@ -29,7 +29,7 @@ router.all('*', async (ctx, next) => {
 router.get('/', async (ctx) => {
     logger.info(ctx.request)
     try {
-        await waitForTimeout(10000)
+        // await waitForTimeout(10000)
         ctx.body = 'hello world'    
     } catch(e) {
         errlogger.error(e)

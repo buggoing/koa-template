@@ -14,5 +14,5 @@ module.exports = {
         database: '***'
     },
     logpath: './logs/',
-    serverListenPort: 3001
+    serverListenPort: 3002
 }

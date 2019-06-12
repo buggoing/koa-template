@@ -23,5 +23,15 @@
   "devDependencies": {
     "jest": "^24.8.0",
     "nodemon": "^1.18.3"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "logs/*",
+      "docs/*",
+      "doc/*"
+    ],
+    "delay": "1000",
+    "verbose": true
   }
 }
